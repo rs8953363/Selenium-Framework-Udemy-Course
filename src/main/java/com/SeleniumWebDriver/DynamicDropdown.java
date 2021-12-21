@@ -13,7 +13,7 @@ public class DynamicDropdown {
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium Dependencies\\drivers\\chromedriver.exe");
         WebDriver driver =new ChromeDriver();
 
-        driver.get("http://spicejet.com"); //URL in the browser
+        driver.get("https://rahulshettyacademy.com/dropdownsPractise/"); //URL in the browser
 //  //a[@value='MAA']  - Xpath for chennai
 //  //a[@value='BLR']
 
@@ -21,9 +21,12 @@ public class DynamicDropdown {
         driver.findElement(By.xpath("//a[@value='BLR']")).click();
         Thread.sleep(2000);
 
-//driver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
-        driver.findElement(By.xpath("//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).click();
-        driver.findElement(By.cssSelector(".ui-state-default.ui-state-highlight.ui-state-active")).click();
+        driver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
+
+
+     //   2nd solution: Use Parent and child xpath
+    //    driver.findElement(By.xpath("//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).click();
+      //  driver.findElement(By.cssSelector(".ui-state-default.ui-state-highlight.ui-state-active")).click();
 
     }
 
