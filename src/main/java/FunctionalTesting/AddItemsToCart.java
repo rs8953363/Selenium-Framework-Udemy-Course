@@ -16,6 +16,15 @@ public class AddItemsToCart {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium Dependencies\\drivers\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);//You shouldn't put more than 5 secs for
+        WebDriverWait w = new WebDriverWait(driver, 5);
+
+        // implicit wait. Max is 10 secs
+        //This will be applied all the parts of the
+        // code when loading of the page happens. If it takes more than 5 secs , then the test will fail. If it takes
+        // less than 5 secs then it continues, it won't wait 5 secs. The disadvantege might be that implicit wait hides
+        // the performance issues. If the page should load less than 5 secs, the test will not fail and you cannot notice
+        // the performance error.
 
         String[] itemsNeeded = {"Cucumber", "Brocolli", "Beetroot","Carrot"};
         driver.get("https://rahulshettyacademy.com/seleniumPractise/");
@@ -23,11 +32,24 @@ public class AddItemsToCart {
         //Code works well, but it takes time to load the items added to the card. But, Selenium is so fast, it checks
         // the size of the cart immediately. That's why we need Thread.sleep here.
         Thread.sleep(3000);
-        addItems(driver, itemsNeeded);
+        addItems(driver, itemsNeeded);//addItems is utility
         driver.findElement(By.cssSelector("img[alt='Cart']")).click();
+        driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]")).click();
+        w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.promoCode")));
+
+        driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacademy");
+        driver.findElement(By.cssSelector("button.promoBtn")).click();
+
+        //Implicit Pros: Readable code    Cons: Performance issues are not caught
+        //Explicit Pros: Wait is applied only to targeted elements. No performance issues  Cons: More lines of code
+
+        //Explicit wait: Only for this specific condition
+        w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.promoInfo"))); //visibilityOfElementLocated() is the most popular
+        //method for explicit wait
+
+        System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
 
     }
-
         public static void addItems(WebDriver driver, String[] itemsNeeded){
         int count = 0;
         List<WebElement> products = driver.findElements(By.cssSelector("h4.product-name"));
