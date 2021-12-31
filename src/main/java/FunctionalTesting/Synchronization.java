@@ -14,7 +14,7 @@ public class Synchronization {
         driver.get("https://alaskatrips.poweredbygps.com/g/pt/hotels?MDPCID=ALASKA-US.TPS.BRAND.hotel");
         driver.findElement(By.id("H-destination")).sendKeys("nyc");
         driver.findElement(By.id("H-destination")).sendKeys(Keys.TAB);
-        driver.findElement(By.id(("H-fromDate")).sendKeys(Keys.ENTER));
+        //driver.findElement(By.id(("H-fromDate")).sendKeys(Keys.ENTER)); Check this later
 
         WebDriverWait d = new WebDriverWait(driver, 20);
         d.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='resultsContainer']/section/article[1]")));
