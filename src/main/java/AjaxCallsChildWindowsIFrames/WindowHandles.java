@@ -22,7 +22,7 @@ public class WindowHandles {
 
         Iterator<String> it = windows.iterator();//This is to extract the values from set collection
         String parentId = it.next();//this line is for grabbing parentId (0th index)
-        String childId = it.next(); //This is for cchild window (1st index)
+        String childId = it.next(); //This is for child window (1st index)
         //it.next(); This will take you to the third window. But, you usually don't have more than two windows.
 
         driver.switchTo().window(childId);

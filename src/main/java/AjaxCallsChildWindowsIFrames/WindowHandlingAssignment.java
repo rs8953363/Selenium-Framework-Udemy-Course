@@ -12,21 +12,32 @@ public class WindowHandlingAssignment {
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/");
 
-        Actions a = new Actions(driver);
-        WebElement move = driver.findElement(By.cssSelector("//a[contains(text(), 'Multiple Windows')]"));
-        a.moveToElement(move).build().perform();
+//        Actions a = new Actions(driver);
+//        WebElement move = driver.findElement(By.xpath("//a[contains(text(), 'Multiple Windows')]"));
+//        a.moveToElement(move).build().perform();
+//
+//        driver.findElement(By.xpath("//a[@target='_blank']")).click();
+//        Set<String> windows = driver.getWindowHandles();
+//
+//        Iterator<String> it = windows.iterator();
+//        String parentWindow = it.next();
+//        driver.switchTo().window(it.next());
+//        System.out.println(driver.findElement(By.xpath("//div/h3")).getText());
+//        driver.switchTo().window(parentWindow);
+//        System.out.println(driver.findElement(By.xpath("//div[@id='content']/div/h3")).getText());
 
-        driver.findElement(By.cssSelector("//a[contains(text(), 'Click Here')]")).click();
-        Set<String> windows = driver.getWindowHandles();
+        driver.findElement(By.linkText("Multiple Windows")).click();
+        driver.findElement(By.cssSelector("a[href*='windows']")).click();
+        Set<String> abc=driver.getWindowHandles();
+        Iterator<String> it=abc.iterator();
+        String parentWindow=it.next();
 
-        Iterator<String> it = windows.iterator();
-        String parentId = it.next();
-        String childId = it.next();
-        driver.switchTo().window(childId);
-        driver.findElement(By.cssSelector("//a[contains(text(), 'Click Here')]")).click();
-
-
-
-
+        driver.switchTo().window(it.next());
+        System.out.println(driver.findElement(By.xpath("//div/h3")).getText());
+        driver.switchTo().window(parentWindow);
+        System.out.println(driver.findElement(By.xpath("//div[@id='content']/div/h3")).getText());
     }
 }
+
+
+
