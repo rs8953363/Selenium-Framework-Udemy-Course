@@ -1,13 +1,16 @@
 package Sec13SeleniumWebDriver;
 
+import org.apache.commons.io.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.*;
+
 public class MaxWindowDeleteCookies {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.setProperty("webdriver.chrome.driver","C:\\Selenium Dependencies\\drivers\\chromedriver.exe");
-        Webdriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
 
         //maximize your browser
         driver.manage().window().maximize();
@@ -21,7 +24,15 @@ public class MaxWindowDeleteCookies {
         //click on any link. Then you will be redirected to login page - verify login page
 
         driver.get("http://google.com");
-        
+        //To take screenshot, you have to convert your WebDriver object into screenshot object
+        File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(src,new File("C:\\Users\\Admin\\screenshot.png"));//System will nort allow to create
+        // anything in C drive as it's secure. You have to be admin to create or delete something inside.So it's better
+        // to change the drive/directory.If you don't have any drive other than C drive, put it in Users folder
+        //To download a FileUtils jar file, please go to https://commons.apache.org/proper/commons-io/download_io.cgi
+        //click on commons-io-2.11.0-bin.zip file, download and unzip and add to yuor project.
+        //Project structure-->Modules-->Dependencies--> Click plus sign--> select add external jars--> Find the files
+        // you unzipped-->click OK
 
 
     }
