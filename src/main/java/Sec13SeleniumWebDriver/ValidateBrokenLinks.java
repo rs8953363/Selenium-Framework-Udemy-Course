@@ -3,6 +3,7 @@ package Sec13SeleniumWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.testng.*;
+import org.testng.asserts.*;
 
 import java.io.*;
 import java.net.*;
@@ -16,6 +17,8 @@ public class ValidateBrokenLinks {
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 
         List<WebElement> links = driver.findElements(By.cssSelector("li[class='gi-li'] a"));
+
+
         for (WebElement link: links){
 
             String url = link.getAttribute("href");
