@@ -25,6 +25,17 @@ public class WebTableSort {
         // compare original list vs sorted list
         Assert.assertTrue(originalList.equals(sortedList));
 
+        //Int Q: How to print each item on a web table? Scan the Veg/fruit name column with getText ->Beans->
+        // print the price of rice
 
+        List<String> price = elementList.stream().filter(s->s.getText().contains("Beans")).map(s->getPriceVeggie(s))
+                .collect(Collectors.toList());
+        price.forEach(a-> System.out.println(a));
+
+    }
+    private static String getPriceVeggie(WebElement s){
+       String pricevalue =git add .
+                s.findElement(By.xpath("following-sibling::td[1]")).getText();
+        return pricevalue;
     }
 }
